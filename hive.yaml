@@ -1,0 +1,25 @@
+project_name: matmul
+runtime:
+  num_agents: 2
+  max_runtime_seconds: 600  # 10 minutes in seconds
+  max_iterations: 300        # unlimited iterations
+repo:
+  source: https://github.com/luc-hiverge/project-matmul
+  evaluation_script: evaluator.py
+  evolve_files_and_ranges: matmul.cpp Makefile
+sandbox:
+  timeout: 120              # Time before evaluation fails
+  target_platforms:
+    - linux/amd64
+prompt:
+  context: |
+    # Matrix Multiplication Optimization
+
+    You are optimizing a double-precision matrix multiplication (C = A*B, row-major).
+
+    ## Constraints
+    - BLAS-like signature: matmul(M, N, K, A, lda, B, ldb, C, ldc)
+    - Must pass correctness check (max abs error < 1e-9)
+
+    ## Objective
+    Maximize the speedup reported by the evaluator (higher is better).
