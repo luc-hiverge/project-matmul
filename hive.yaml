@@ -10,7 +10,8 @@ runtime:
   max_runtime_seconds: 600
   max_iterations: 300
 sandbox:
-  setup_script: null
+  setup_script: |
+    git checkout 1uc/fix-fitness
   resources:
     cpu: '1'
     memory: 4Gi
