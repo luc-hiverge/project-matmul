@@ -1,16 +1,21 @@
-project_name: matmul
+coordinator_config_name: default-coordinator-config
+repo:
+#  source: https://github.com/luc-hiverge/project-matmul.git
+  evaluation_script: evaluator.py
+  target_code:
+  - matmul.cpp
+  # - Makefile
 runtime:
   num_agents: 2
-  max_runtime_seconds: 600  # 10 minutes in seconds
-  max_iterations: 300        # unlimited iterations
-repo:
-  source: https://github.com/luc-hiverge/project-matmul
-  evaluation_script: evaluator.py
-  evolve_files_and_ranges: matmul.cpp Makefile
+  max_runtime_seconds: 600
+  max_iterations: 300
 sandbox:
-  timeout: 120              # Time before evaluation fails
-  target_platforms:
-    - linux/amd64
+  setup_script: null
+  resources:
+    cpu: '1'
+    memory: 4Gi
+  evaluation_timeout: 120
+  base_image: luchiverge/matmul:latest
 prompt:
   context: |
     # Matrix Multiplication Optimization
