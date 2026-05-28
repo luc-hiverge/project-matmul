@@ -1,17 +1,24 @@
 coordinator_config_name: default-coordinator-config
 repo:
-#  source: https://github.com/luc-hiverge/project-matmul.git
+  source: ${PWD}
   evaluation_script: evaluator.py
   target_code:
   - matmul.cpp
   # - Makefile
+  files:
+    - .
+    - "!big-blob"
+    - "!*.o"
+    - matmul.o
+    - "!matmul"
+
+
 runtime:
   num_agents: 2
   max_runtime_seconds: 600
   max_iterations: 300
 sandbox:
-  setup_script: |
-    git checkout 1uc/fix-fitness
+  setup_script: null
   resources:
     cpu: '1'
     memory: 4Gi
